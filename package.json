@@ -1,10 +1,10 @@
 {
   "name": "@imchen/common",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Arbitrary long text encryption tool based on JSENCRYPT supports weapp program",
   "main": "dist/index.umd.js",
   "module": "dist/index.es.js",
-  "types": "dist/types/index.d.ts",
+  "types": "dist/index.d.ts",
   "packageManager": "pnpm@7.9.5",
   "files": [
     "dist",

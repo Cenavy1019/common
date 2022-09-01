@@ -110,7 +110,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Cenavy1019/rsa"
+    "url": "https://github.com/Cenavy1019/common"
   },
   "keywords": [
     "rsa",
@@ -123,9 +123,9 @@
   "author": "hankin.dream <mm154620@163.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Cenavy1019/rsa/issues"
+    "url": "https://github.com/Cenavy1019/common/issues"
   },
-  "homepage": "https://github.com/Cenavy1019/rsa",
+  "homepage": "https://github.com/Cenavy1019/common",
   "dependencies": {
     "@imchen/rsa": "^0.0.3",
     "crypto-js": "^4.1.1",

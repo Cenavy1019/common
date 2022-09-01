@@ -9,9 +9,9 @@ import esbuild from 'rollup-plugin-esbuild'
 import typescript from 'rollup-plugin-typescript2'
 import { terser } from "rollup-plugin-terser";
 
-const currentNodeEnv = process.env.NODE_ENV;
+const isProd = process.env.NODE_ENV === 'prod';
 const isCompressLibrary =
-  currentNodeEnv === "prod" ? terser({ module: true, toplevel: true }) : null;
+  isProd ? terser({ module: true, toplevel: true }) : null;
 const pkg = require("./package.json");
 
 const libraryName = pkg.name;
@@ -24,14 +24,17 @@ export default [
         file: pkg.main,
         name: libraryName,
         format: "umd",
-        sourcemap: true
+        sourcemap: !isProd
       },
-      { file: pkg.module, name: libraryName, format: "esm", sourcemap: true
-    }
-      
+      {
+        file: pkg.module, 
+        name: libraryName, 
+        format: "esm", 
+        sourcemap: !isProd
+      }
+
     ],
     plugins: [
-      
       commonjs(),
       resolve({
         preferBuiltins: true
@@ -41,26 +44,28 @@ export default [
       typescript(),
       isCompressLibrary,
       esbuild({
-        minify: process.env.NODE_ENV === 'prod'
+        minify: isProd
       })
     ],
     watch: {
       include: "src/**",
       exclude: "node_modules/**",
     },
-    external: ["crypto-js", "lodash-es", "@imchen/rsa"],
-    globals:{
+    external: ["crypto-js", "lodash-es", "@imchen/rsa", "@imchen/rsa/dist/special"],
+    globals: {
       "lodash-es": "lodash-es",
       "crypto-js": "CryptoJS",
-      "@imchen/rsa": "@imchen/rsa"
+      "@imchen/rsa": "JSEncrypt",
+      "@imchen/rsa/dist/special": "JSEncrypt2"
     }
   },
   {
     input: "./src/index.ts",
-    output: [{ file: `dist/${libraryName}.d.ts`, format: "esm",
-  }],
+    output: [{
+      file: `dist/${libraryName}.d.ts`, format: "esm",
+    }],
     plugins: [dts()],
-    external: ['lodash', 'lodashEs', 'CryptoJs', 'encryptlong', "@imchen/rsa"],
-    
+    external: ['lodash-es', 'crypto-js', "@imchen/rsa",  "@imchen/rsa/dist/special"],
+
   }]
 

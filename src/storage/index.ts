@@ -112,7 +112,7 @@ class WebStorage {
   get<T = any>(key: string, defaultValue: string | any = null): T {
     /** MARK: 获取key时需要再次加密来对应本地加密后的key */
     const item = this.storage.getItem(this.prefixKey(key))
-    const storedValue: null | any = !isNull(item) && !isUndefined(item) ? JSON.parse(item) : null
+    const storedValue: null | any = (!isNull(item) && !isUndefined(item)) ? JSON.parse(item as string) : null
 
     if (isNull(storedValue)) {
       return defaultValue
@@ -129,7 +129,7 @@ class WebStorage {
       }
     }
 
-    return this.encrypted ? JSON.parse(this._aesDecrypt(storedValue)) : storedValue
+    return (this.encrypted && !isNull(storedValue)) ? JSON.parse(this._aesDecrypt(storedValue)) : storedValue
   }
 
   /**

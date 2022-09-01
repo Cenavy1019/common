@@ -1,6 +1,6 @@
 import CryptoJS from 'crypto-js';
-// import JSEncrypt from '@imchen/rsa'
-// import JSEncrypt2 from '@imchen/rsa/dist/special'
+import JSEncrypt from '@imchen/rsa'
+import JSEncrypt2 from '@imchen/rsa/dist/special'
 
 // ----------------- rsa ----------------
 /**
@@ -9,11 +9,11 @@ import CryptoJS from 'crypto-js';
  * @param key 公钥
  * @returns 加密后的数据
  */
-// export function RSAEncrypt(data: string, key: string): string {
-//   const encryptTool = new JSEncrypt()
-//   encryptTool.setPublicKey(key)
-//   return encryptTool.encryptLong(data)
-// }
+export function RSAEncrypt(data: string, key: string): string {
+  const encryptTool = new JSEncrypt()
+  encryptTool.setPublicKey(key)
+  return encryptTool.encryptLong(data)
+}
 
 /**
  * RSA解密
@@ -21,11 +21,11 @@ import CryptoJS from 'crypto-js';
  * @param key 密钥
  * @returns 解密后的数据
  */
-// export function RSADecrypt(data: string, key: string): string {
-//   const encryptTool = new JSEncrypt()
-//   encryptTool.setPrivateKey(key)
-//   return encryptTool.decryptLong(data)
-// }
+export function RSADecrypt(data: string, key: string): string {
+  const encryptTool = new JSEncrypt()
+  encryptTool.setPrivateKey(key)
+  return encryptTool.decryptLong(data)
+}
 
 /**
  * 特殊 RSA加密
@@ -33,11 +33,11 @@ import CryptoJS from 'crypto-js';
  * @param key 公钥
  * @returns 加密后的数据
  */
-// export function RSASpecialEncrypt(data: string, key: string): string {
-//   const encryptTool = new JSEncrypt2()
-//   encryptTool.setPublicKey(key)
-//   return encryptTool.encryptUnicodeLong(data)
-// }
+export function RSASpecialEncrypt(data: string, key: string): string {
+  const encryptTool = new JSEncrypt2()
+  encryptTool.setPublicKey(key)
+  return encryptTool.encryptUnicodeLong(data)
+}
 
 /**
  * 特殊 RSA解密
@@ -45,11 +45,11 @@ import CryptoJS from 'crypto-js';
  * @param key 密钥
  * @returns 解密后的数据
  */
-// export function RSASpecialDecrypt(data: string, key: string): string {
-//   const encryptTool = new JSEncrypt2()
-//   encryptTool.setPrivateKey(key)
-//   return encryptTool.decryptUnicodeLong(data)
-// }
+export function RSASpecialDecrypt(data: string, key: string): string {
+  const encryptTool = new JSEncrypt2()
+  encryptTool.setPrivateKey(key)
+  return encryptTool.decryptUnicodeLong(data)
+}
 
 
 // ----------------- cryptojs ----------------

@@ -1,6 +1,6 @@
 import { expect, it,  beforeAll, vi} from 'vitest'
 
-import Storage from './index'
+import Storage from '../../src/storage/index'
 const storage  = new Storage({
   prefix: 'dldldld',
   encrypted: true

@@ -1,4 +1,4 @@
-import { Base64Decrypt } from "./index";
+import { Base64Decrypt } from "../../src/encrypt/index";
 
 import { expect, it } from 'vitest'
 

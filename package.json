@@ -11,7 +11,7 @@
     "*.d.ts"
   ],
   "scripts": {
-    "install": "pnpm i",
+    "bootstrap": "pnpm i",
     "dev": "cross-env NODE_ENV=dev rollup --config rollup.config.ts --watch",
     "build": "cross-env NODE_ENV=prod rollup --config rollup.config.ts",
     "build:prod": "run-s clean:dist build",

@@ -8,10 +8,11 @@ import alias from '@rollup/plugin-alias'
 import esbuild from 'rollup-plugin-esbuild'
 import typescript from 'rollup-plugin-typescript2'
 import { terser } from "rollup-plugin-terser";
+import cleanup from 'rollup-plugin-cleanup'
 
 const isProd = process.env.NODE_ENV === 'prod';
 const isCompressLibrary =
-  isProd ? terser({ module: true, toplevel: true }) : null;
+  isProd ? terser({ compress: {drop_console: true, drop_debugger: true} }) : null;
 const pkg = require("./package.json");
 
 const libraryName = pkg.name;
@@ -42,17 +43,20 @@ export default [
       alias(),
       json(),
       typescript(),
+      // esbuild({
+      //   minify: isProd,
+      //   pure: isProd ? ['console.log', 'debugger'] : []
+      // }),
       isCompressLibrary,
-      esbuild({
-        minify: isProd
-      })
+      cleanup()
     ],
     watch: {
       include: "src/**",
       exclude: "node_modules/**",
     },
-    external: ["crypto-js", "lodash-es", "@imchen/rsa", "@imchen/rsa/dist/special"],
+    external: ['dayjs', "crypto-js", "lodash-es", "@imchen/rsa", "@imchen/rsa/dist/special"],
     globals: {
+      'dayjs': 'dayjs',
       "lodash-es": "lodash-es",
       "crypto-js": "CryptoJS",
       "@imchen/rsa": "JSEncrypt",

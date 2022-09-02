@@ -13,7 +13,7 @@ export const inquireVersion = async () => {
     name: "version",
     message: "Please select the release version from list",
     default: "patch",
-    choices: ["major", "minor", "patch", "next", "pre-release", "as-is", "custom"],
+    choices: ["major", "minor", "patch", "next"],
   });
   return version;
 };

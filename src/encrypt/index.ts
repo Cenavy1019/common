@@ -4,59 +4,74 @@ import JSEncrypt2 from '@imchen/rsa/dist/special'
 
 // ----------------- rsa ----------------
 /**
- * RSA加密
+ * @description RSA加密
  * @param data 需要加密的数据
- * @param key 公钥
+ * @param publicKey 公钥
  * @returns 加密后的数据
+ *  * ```typescript
+ * RSAEncrypt('加密数据', '3IjqMziS16fKO7Zt==...')
+ * ```
  */
-export function RSAEncrypt(data: string, key: string): string {
+export function RSAEncrypt(data: string, publicKey: string): string {
   const encryptTool = new JSEncrypt()
-  encryptTool.setPublicKey(key)
+  encryptTool.setPublicKey(publicKey)
   return encryptTool.encryptLong(data)
 }
 
 /**
- * RSA解密
+ * @description RSA解密
  * @param data 需要解密的数据
- * @param key 密钥
+ * @param privateKey 私钥
  * @returns 解密后的数据
+ *  * ```typescript
+ * RSADecrypt('加密数据', '3IjqMziS16fKO7Zt==...')
+ * ```
  */
-export function RSADecrypt(data: string, key: string): string {
+export function RSADecrypt(data: string, privateKey: string): string {
   const encryptTool = new JSEncrypt()
-  encryptTool.setPrivateKey(key)
+  encryptTool.setPrivateKey(privateKey)
   return encryptTool.decryptLong(data)
 }
 
 /**
- * 特殊 RSA加密
+ * @description 特殊 RSA加密
  * @param data 需要加密的数据
- * @param key 公钥
+ * @param publicKey 公钥
  * @returns 加密后的数据
+ * ```typescript
+ * RSASpecialEncrypt('加密数据', '3IjqMziS16fKO7Zt==...')
+ * ```
  */
-export function RSASpecialEncrypt(data: string, key: string): string {
+export function RSASpecialEncrypt(data: string, publicKey: string): string {
   const encryptTool = new JSEncrypt2()
-  encryptTool.setPublicKey(key)
+  encryptTool.setPublicKey(publicKey)
   return encryptTool.encryptUnicodeLong(data)
 }
 
 /**
- * 特殊 RSA解密
+ * @description 特殊 RSA解密
  * @param data 需要解密的数据
- * @param key 密钥
+ * @param privateKey 私钥
  * @returns 解密后的数据
+ * ```typescript
+ * RSASpecialDecrypt('加密数据', '3IjqMziS16fKO7Zt==...')
+ * ```
  */
-export function RSASpecialDecrypt(data: string, key: string): string {
+export function RSASpecialDecrypt(data: string, privateKey: string): string {
   const encryptTool = new JSEncrypt2()
-  encryptTool.setPrivateKey(key)
+  encryptTool.setPrivateKey(privateKey)
   return encryptTool.decryptUnicodeLong(data)
 }
 
 
 // ----------------- cryptojs ----------------
 /**
- * base64加密
+ * @description base64加密
  * @param rawStr
  * @returns
+ * ```typescript
+ * Base64Encrypt('被加密数据')
+ * ```
  */
 export function Base64Encrypt(rawStr: string) {
   const wordArray = CryptoJS.enc.Utf8.parse(rawStr)
@@ -65,9 +80,12 @@ export function Base64Encrypt(rawStr: string) {
 }
 
 /**
- * base64解密
+ * @description base64解密
  * @param base64
  * @returns
+ * ```typescript
+ * Base64Decrypt('base64加密数据')
+ * ```
  */
 export function Base64Decrypt(base64: string) {
   const parsedWordArray = CryptoJS.enc.Base64.parse(base64)
@@ -77,11 +95,14 @@ export function Base64Decrypt(base64: string) {
 
 
 /**
- * aes hex解密
+ * @description aes hex解密
  * @param word
  * @param skey
  * @param siv
  * @returns
+ * ```typescript
+ * AESDecrypt('加密数据', '3IjqMziS16fKO7Zt', '6fjqMziS16fKO7Zt')
+ * ```
  */
  export function AESDecrypt(word: string, skey: string, siv: string) {
   const key = CryptoJS.enc.Utf8.parse(skey)
@@ -98,11 +119,14 @@ export function Base64Decrypt(base64: string) {
 }
 
 /**
- * aes hex 加密
+ * @description aes hex 加密
  * @param word
  * @param skey
  * @param siv
  * @returns hex string
+ * ```typescript
+ * AESEncrypt('被加密数据', '3IjqMziS16fKO7Zt', '6fjqMziS16fKO7Zt')
+ * ```
  */
 export function AESEncrypt(word: string, skey: string, siv: string) {
   const key = CryptoJS.enc.Utf8.parse(skey)

@@ -34,7 +34,7 @@ class WebStorage {
   public hdiv: Options['iv']
 
   /**
-   * cache storage
+   * @description cache storage
    * @param prefix cache key prefix
    * @param driverType local or session
    * @param encrypted Whether to encrypt the cache
@@ -124,12 +124,12 @@ class WebStorage {
         if (expire && Number(expire) < Date.now()) {
           this.remove(key)
         } else {
-          return this.encrypted ? JSON.parse(this._aesDecrypt(value)) : value
+          return this.encrypted  ? JSON.parse(this._aesDecrypt(value)) : value
         }
       }
     }
 
-    return (this.encrypted && !isNull(storedValue)) ? JSON.parse(this._aesDecrypt(storedValue)) : storedValue
+    return (this.encrypted && !isNull(storedValue)) ? JSON.parse(this._aesDecrypt(storedValue.value)) : storedValue
   }
 
   /**

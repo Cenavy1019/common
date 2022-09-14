@@ -1,6 +1,6 @@
 {
   "name": "@imchen/common",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Archive the commonly used tool library",
   "main": "dist/index.umd.js",
   "module": "dist/index.es.js",
@@ -139,22 +139,20 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Cenavy1019/common"
+    "url": ""
   },
   "keywords": [
     "rsa",
-    "jsencrypt",
-    "weapp",
-    "wx-miniapp-program",
-    "typescript",
-    "special"
+    "common",
+    "library",
+    "typescript"
   ],
   "author": "hankin.dream <mm154620@163.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Cenavy1019/common/issues"
+    "url": ""
   },
-  "homepage": "https://github.com/Cenavy1019/common",
+  "homepage": "",
   "dependencies": {
     "@imchen/rsa": "^0.0.3",
     "crypto-js": "^4.1.1",

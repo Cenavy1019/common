@@ -5,11 +5,23 @@
   "main": "dist/index.umd.js",
   "module": "dist/index.es.js",
   "types": "dist/index.d.ts",
-  "packageManager": "pnpm@7.9.5",
+  "packageManager": "^pnpm@6.32.4",
   "files": [
     "dist",
     "*.d.ts"
   ],
+  "exports": {
+    ".": {
+      "import": {
+        "node": "./dist/index.es.js",
+        "default": "./dist/index.es.js"
+      },
+      "require": "./dist/index.umd.js",
+      "types": "./types/index.d.ts"
+    },
+    "./dist/*": "./dist/*",
+    "./types/*": "./types/*"
+  },
   "scripts": {
     "bootstrap": "pnpm i",
     "dev": "cross-env NODE_ENV=dev rollup --config rollup.config.ts --watch",
@@ -26,7 +38,13 @@
     "clean:lib": "rimraf node_modules",
     "release:haslog": "esno ./cikit/release.ts",
     "release:nojest": "bumpp --commit \"release: release v%s\" --push --tag && npm publish",
-    "commit": "git-cz"
+    "commit": "git-cz",
+    "lint": "eslint src --fix --ext .ts,.tsx,.vue,.js,.jsx",
+    "lints": "eslint -f unix \"src/**/*.{ts,tsx}\"",
+    "prettier": "prettier --write .",
+    "prepare": "husky install",
+    "lint:lint-staged": "lint-staged",
+    "commitlint": "commitlint --config commitlint.config.js -e -V"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.0.3",
@@ -52,6 +70,7 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-tsdoc": "^0.2.16",
     "esno": "^0.16.3",
     "husky": "^8.0.1",
     "inquirer": "^9.1.0",
@@ -72,7 +91,7 @@
     "ts-jest": "^28.0.8",
     "tslib": "^2.4.0",
     "typedoc": "^0.23.10",
-    "typescript": "^4.7.4",
+    "typescript": "4.8.2",
     "vitest": "0.22.1"
   },
   "jest": {

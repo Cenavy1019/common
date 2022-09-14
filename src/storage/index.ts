@@ -143,11 +143,9 @@ class WebStorage {
       }
     }
 
-    if (storedValue && isString(storedValue)) {
-      return this.encrypted
-        ? JSON.parse(this._aesDecrypt(storedValue))
-        : storedValue;
-    }
+    return this.encrypted && isString(storedValue)
+      ? JSON.parse(this._aesDecrypt(storedValue))
+      : storedValue;
   }
 
   /**

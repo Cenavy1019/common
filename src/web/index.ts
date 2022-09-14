@@ -10,31 +10,39 @@
  * @returns
  */
 
- export function getParentOrChildrenNodeWithIndeterminate(
+export function getParentOrChildrenNodeWithIndeterminate(
   store: any,
-  filterRootValue = 'root_'
+  filterRootValue = "root_"
 ) {
-  const checkedNodes: any[] = []
+  const checkedNodes: any[] = [];
 
-  const traverse = function (node: { checked?: any; data?: any; indeterminate?: any; root?: any; childNodes?: any; }) {
-    const childNodes = node.root ? node.root.childNodes : node.childNodes
+  const traverse = function (node: {
+    checked?: any;
+    data?: any;
+    indeterminate?: any;
+    root?: any;
+    childNodes?: any;
+  }) {
+    const childNodes = node.root ? node.root.childNodes : node.childNodes;
 
-    childNodes.forEach((child: { checked?: any; data?: any; indeterminate?: any }) => {
-      if (child.checked) {
-        if (child.data.id.includes(filterRootValue)) {
-          traverse(child)
-        } else {
-          checkedNodes.push(child.data)
+    childNodes.forEach(
+      (child: { checked?: any; data?: any; indeterminate?: any }) => {
+        if (child.checked) {
+          if (child.data.id.includes(filterRootValue)) {
+            traverse(child);
+          } else {
+            checkedNodes.push(child.data);
+          }
+        }
+        if (child.indeterminate) {
+          traverse(child);
         }
       }
-      if (child.indeterminate) {
-        traverse(child)
-      }
-    })
-  }
+    );
+  };
 
-  traverse(store)
-  return checkedNodes
+  traverse(store);
+  return checkedNodes;
 }
 
 /**
@@ -48,44 +56,67 @@
 export function downloadFile({
   fileUrl,
   fileType,
-  fileName
+  fileName,
 }: {
-  fileUrl: string
-  fileType?: string
-  fileName?: string
+  fileUrl: string;
+  fileType?: string;
+  fileName?: string;
 }) {
   if (!fileUrl) {
     throw new Error("param 'fileUrl' is required");
   }
 
   // const checkFileName = ['.pdf', '.doc', '.docx', '.xls', '.xlsx']
-  const checkFileType = ['pdf', 'doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx', 'mp4', 'mp3', 'png', 'jpeg', 'jpg', 'gif', 'bmp', 'webp', 'tiff', 'svg', 'ttf', 'eot']
+  const checkFileType = [
+    "pdf",
+    "doc",
+    "docx",
+    "xls",
+    "xlsx",
+    "ppt",
+    "pptx",
+    "mp4",
+    "mp3",
+    "png",
+    "jpeg",
+    "jpg",
+    "gif",
+    "bmp",
+    "webp",
+    "tiff",
+    "svg",
+    "ttf",
+    "eot",
+  ];
 
   if (fileType && checkFileType.includes(fileType)) {
-    return true
-  } else {
-    fileType = fileUrl.split('.')[fileUrl.split('.').length - 1]
+    return true;
   }
+  fileType = fileUrl.split(".")[fileUrl.split(".").length - 1];
 
   if (!fileName) {
-    fileName = fileUrl
+    fileName = fileUrl;
   }
 
-  console.log('@imchen/common/downloadFile infos', { fileName, fileType, fileUrl })
+  console.log("@imchen/common/downloadFile infos", {
+    fileName,
+    fileType,
+    fileUrl,
+  });
 
-  let requestUrl = fileUrl.replace(/\\/g, '/')
-  const protocol = window.location.protocol
-  requestUrl = `${protocol}${requestUrl.split(':')[1]}`
-  const x = new XMLHttpRequest()
-  x.open('GET', requestUrl, true)
-  x.setRequestHeader('Content-Type', `application/${fileType}`)
-  x.responseType = 'blob'
+  let requestUrl = fileUrl.replace(/\\/g, "/");
+  const { protocol } = window.location;
+  requestUrl = `${protocol}${requestUrl.split(":")[1]}`;
+  const x = new XMLHttpRequest();
+  x.open("GET", requestUrl, true);
+  x.setRequestHeader("Content-Type", `application/${fileType}`);
+  x.responseType = "blob";
   x.onload = function () {
-    const downloadUrl = window.URL.createObjectURL(x.response)
-    const a = document.createElement('a')
-    a.download = fileName ?? '文件下载'
-    a.href = downloadUrl
-    a.click()
-  }
-  x.send()
+    const downloadUrl = window.URL.createObjectURL(x.response);
+    const a = document.createElement("a");
+    a.download = fileName ?? "文件下载";
+    a.href = downloadUrl;
+    a.click();
+  };
+  x.send();
 }

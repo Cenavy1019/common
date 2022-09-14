@@ -1,5 +1,5 @@
 /*
- * @Desc: 
+ * @Desc:
  * @Author: hankin.dream
  * @Date: 2022-08-29 15:22:14
  */
@@ -18,8 +18,8 @@ export const inquireVersion = async () => {
   return version;
 };
 
-export const updateVersion = async() => {
-  await execSync("bumpp --commit \"release: release v%s\"", { stdio: "inherit" });
-  const {version} =  await import('../package.json')
-  return version
-}
+export const updateVersion = async () => {
+  await execSync('bumpp --commit "release: release v%s"', { stdio: "inherit" });
+  const { version } = await import("../package.json");
+  return version;
+};

@@ -1,6 +1,6 @@
-import CryptoJS from 'crypto-js';
-import JSEncrypt from '@imchen/rsa'
-import JSEncrypt2 from '@imchen/rsa/dist/special'
+import CryptoJS from "crypto-js";
+import JSEncrypt from "@imchen/rsa";
+import JSEncrypt2 from "@imchen/rsa/dist/special";
 
 // ----------------- rsa ----------------
 /**
@@ -13,9 +13,9 @@ import JSEncrypt2 from '@imchen/rsa/dist/special'
  * ```
  */
 export function RSAEncrypt(data: string, publicKey: string): string {
-  const encryptTool = new JSEncrypt()
-  encryptTool.setPublicKey(publicKey)
-  return encryptTool.encryptLong(data)
+  const encryptTool = new JSEncrypt();
+  encryptTool.setPublicKey(publicKey);
+  return encryptTool.encryptLong(data);
 }
 
 /**
@@ -28,9 +28,9 @@ export function RSAEncrypt(data: string, publicKey: string): string {
  * ```
  */
 export function RSADecrypt(data: string, privateKey: string): string {
-  const encryptTool = new JSEncrypt()
-  encryptTool.setPrivateKey(privateKey)
-  return encryptTool.decryptLong(data)
+  const encryptTool = new JSEncrypt();
+  encryptTool.setPrivateKey(privateKey);
+  return encryptTool.decryptLong(data);
 }
 
 /**
@@ -43,9 +43,9 @@ export function RSADecrypt(data: string, privateKey: string): string {
  * ```
  */
 export function RSASpecialEncrypt(data: string, publicKey: string): string {
-  const encryptTool = new JSEncrypt2()
-  encryptTool.setPublicKey(publicKey)
-  return encryptTool.encryptUnicodeLong(data)
+  const encryptTool = new JSEncrypt2();
+  encryptTool.setPublicKey(publicKey);
+  return encryptTool.encryptUnicodeLong(data);
 }
 
 /**
@@ -58,11 +58,10 @@ export function RSASpecialEncrypt(data: string, publicKey: string): string {
  * ```
  */
 export function RSASpecialDecrypt(data: string, privateKey: string): string {
-  const encryptTool = new JSEncrypt2()
-  encryptTool.setPrivateKey(privateKey)
-  return encryptTool.decryptUnicodeLong(data)
+  const encryptTool = new JSEncrypt2();
+  encryptTool.setPrivateKey(privateKey);
+  return encryptTool.decryptUnicodeLong(data);
 }
-
 
 // ----------------- cryptojs ----------------
 /**
@@ -74,9 +73,9 @@ export function RSASpecialDecrypt(data: string, privateKey: string): string {
  * ```
  */
 export function Base64Encrypt(rawStr: string) {
-  const wordArray = CryptoJS.enc.Utf8.parse(rawStr)
-  const base64 = CryptoJS.enc.Base64.stringify(wordArray)
-  return base64
+  const wordArray = CryptoJS.enc.Utf8.parse(rawStr);
+  const base64 = CryptoJS.enc.Base64.stringify(wordArray);
+  return base64;
 }
 
 /**
@@ -88,11 +87,10 @@ export function Base64Encrypt(rawStr: string) {
  * ```
  */
 export function Base64Decrypt(base64: string) {
-  const parsedWordArray = CryptoJS.enc.Base64.parse(base64)
-  const parsedStr = parsedWordArray.toString(CryptoJS.enc.Utf8)
-  return parsedStr
+  const parsedWordArray = CryptoJS.enc.Base64.parse(base64);
+  const parsedStr = parsedWordArray.toString(CryptoJS.enc.Utf8);
+  return parsedStr;
 }
-
 
 /**
  * @description aes hex解密
@@ -104,18 +102,18 @@ export function Base64Decrypt(base64: string) {
  * AESDecrypt('加密数据', '3IjqMziS16fKO7Zt', '6fjqMziS16fKO7Zt')
  * ```
  */
- export function AESDecrypt(word: string, skey: string, siv: string) {
-  const key = CryptoJS.enc.Utf8.parse(skey)
-  const iv = CryptoJS.enc.Utf8.parse(siv)
-  const encryptedHexStr = CryptoJS.enc.Hex.parse(word)
-  const srcs = CryptoJS.enc.Base64.stringify(encryptedHexStr)
+export function AESDecrypt(word: string, skey: string, siv: string) {
+  const key = CryptoJS.enc.Utf8.parse(skey);
+  const iv = CryptoJS.enc.Utf8.parse(siv);
+  const encryptedHexStr = CryptoJS.enc.Hex.parse(word);
+  const srcs = CryptoJS.enc.Base64.stringify(encryptedHexStr);
   const decrypt = CryptoJS.AES.decrypt(srcs, key, {
-    iv: iv,
+    iv,
     mode: CryptoJS.mode.CBC,
-    padding: CryptoJS.pad.Pkcs7
-  })
-  const decryptedStr = decrypt.toString(CryptoJS.enc.Utf8)
-  return decryptedStr.toString()
+    padding: CryptoJS.pad.Pkcs7,
+  });
+  const decryptedStr = decrypt.toString(CryptoJS.enc.Utf8);
+  return decryptedStr.toString();
 }
 
 /**
@@ -129,16 +127,16 @@ export function Base64Decrypt(base64: string) {
  * ```
  */
 export function AESEncrypt(word: string, skey: string, siv: string) {
-  const key = CryptoJS.enc.Utf8.parse(skey)
-  const iv = CryptoJS.enc.Utf8.parse(siv)
-  const srcs = CryptoJS.enc.Utf8.parse(word)
+  const key = CryptoJS.enc.Utf8.parse(skey);
+  const iv = CryptoJS.enc.Utf8.parse(siv);
+  const srcs = CryptoJS.enc.Utf8.parse(word);
   const encrypted = CryptoJS.AES.encrypt(srcs, key, {
-    iv: iv,
+    iv,
     mode: CryptoJS.mode.CBC,
-    padding: CryptoJS.pad.Pkcs7
-  })
+    padding: CryptoJS.pad.Pkcs7,
+  });
   // with base64
   // base64的aes解码见 >>>>
   // encrypted.ciphertext.toString(CryptoJS.enc.Base64)
-  return encrypted.ciphertext.toString()
+  return encrypted.ciphertext.toString();
 }

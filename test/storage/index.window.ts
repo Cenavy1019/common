@@ -1,11 +1,12 @@
-import { expect, it,  beforeAll, vi} from 'vitest'
+import { expect, it, beforeAll, vi } from "vitest";
 
-import Storage from '../../src/storage/index'
-const storage  = new Storage({
-  prefix: 'dldldld',
-  encrypted: true
-})
-console.log('storage: ', storage);
+import Storage from "../../src/storage/index";
+
+const storage = new Storage({
+  prefix: "dldldld",
+  encrypted: true,
+});
+console.log("storage: ", storage);
 
 // beforeAll(() => {
 //   Object.defineProperty(window, 'matchMedia', {
@@ -23,11 +24,11 @@ console.log('storage: ', storage);
 //   })
 // })
 
-it('storage', () => {
-  expect(storage.set('test-storage', 'test-val')).toBeTruthy()
-  expect(storage.set('test-storage2', 'test-val')).toBeTruthy()
-  expect(storage.get('test-storage')).toBeTruthy()
-  expect(storage.length).toBeTruthy()
-  console.log(storage.length)
-  expect(storage.remove('test-storage2')).toBeTruthy()
-})
+it("storage", () => {
+  expect(storage.set("test-storage", "test-val")).toBeTruthy();
+  expect(storage.set("test-storage2", "test-val")).toBeTruthy();
+  expect(storage.get("test-storage")).toBeTruthy();
+  expect(storage.length).toBeTruthy();
+  console.log("storagelength", storage.length);
+  expect(storage.remove("test-storage2")).toBeTruthy();
+});

@@ -4,9 +4,9 @@
  * @Date: 2022-09-02 10:56:57
  */
 
-export const isServer = typeof window === 'undefined'
-export const isClient = !isServer
-export const isProd = process.env.NODE_ENV === 'prod'
+export const isServer = typeof window === "undefined";
+export const isClient = !isServer;
+export const isProd = process.env.NODE_ENV === "prod";
 
 /**
  * @description: 是否为http地址
@@ -18,8 +18,8 @@ export const isProd = process.env.NODE_ENV === 'prod'
  */
 export function isUrl(path: string): boolean {
   const reg =
-    /(((^https?:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+(?::\d+)?|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)$/
-  return reg.test(path)
+    /(((^https?:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+(?::\d+)?|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)$/;
+  return reg.test(path);
 }
 
 /**
@@ -31,8 +31,8 @@ export function isUrl(path: string): boolean {
  * ```
  */
 export function isChinese(name: string): boolean {
-  const reg = /^(?:[\u4e00-\u9fa5·]{1})$/
-  return reg.test(name)
+  const reg = /^(?:[\u4e00-\u9fa5·]{1})$/;
+  return reg.test(name);
 }
 
 /**
@@ -44,8 +44,8 @@ export function isChinese(name: string): boolean {
  * ```
  */
 export function isUscCode(code: string): boolean {
-  const reg = /^(([0-9A-Za-z]{15})|([0-9A-Za-z]{18})|([0-9A-Za-z]{20}))$/
-  return reg.test(code)
+  const reg = /^(([0-9A-Za-z]{15})|([0-9A-Za-z]{18})|([0-9A-Za-z]{20}))$/;
+  return reg.test(code);
 }
 
 /**
@@ -57,8 +57,8 @@ export function isUscCode(code: string): boolean {
  * ```
  */
 export function isPhone(phoneNumber: string): boolean {
-  const reg = /^(?:(?:\+|00)86)?1[3-9]\d{9}$/
-  return reg.test(phoneNumber)
+  const reg = /^(?:(?:\+|00)86)?1[3-9]\d{9}$/;
+  return reg.test(phoneNumber);
 }
 
 /**
@@ -71,6 +71,6 @@ export function isPhone(phoneNumber: string): boolean {
  */
 export function isIdCard(idCard: string): boolean {
   const reg =
-    /^(^[1-9]\d{7}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}$)|(^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])((\d{4})|\d{3}[Xx])$)$/
-  return reg.test(idCard)
+    /^(^[1-9]\d{7}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}$)|(^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])((\d{4})|\d{3}[Xx])$)$/;
+  return reg.test(idCard);
 }

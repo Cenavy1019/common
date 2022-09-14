@@ -1,6 +1,5 @@
+import { expect, it } from "vitest";
 import { Base64Decrypt } from "../../src/encrypt/index";
-
-import { expect, it } from 'vitest'
 
 export const publicKey = `-----BEGIN PUBLIC KEY-----
 MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAuXBwnJ4j/WUqaFwFIDPP
@@ -10,7 +9,7 @@ XimEv1sHm4eaumEsxJu5KIJI5gARGMacjzfeyS9JuBiX6zF90+6oLuZXJJMtIZnJ
 duMZL3kHcI+3VJ4C8acwx+voFxC2DaOnhqxEJtUFgpW0UKw/3oxP8eItSLb+xv3a
 a8OLdWqepi+1WPjfDruNfQ4RWa2Stg5f7hmaCNtub42eZE+CcTmWNNDu1eQlG+Cv
 QQIDAQAB
------END PUBLIC KEY-----`
+-----END PUBLIC KEY-----`;
 
 export const privateKey = `-----BEGIN PRIVATE KEY-----
 MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQC5cHCcniP9ZSpo
@@ -39,11 +38,11 @@ H7R6kvlfwLd4xqP091dA/NR62sdZ1B8+6vM1rk/JAoGBAMZsfqb6zRzigoAuW9Ds
 WUpp1DX0Ld2XsCgu+apJf/8YTftUDBD+24IkODNBMKXzMkCJIiZ18qY2ZwySuCea
 Sh48XHm3JNo78N3wU2WrRO+5tkQwtwx8bIHaDSc5CrJb3qYnSO+JcZszCxlMJKJL
 zVk+v4b42BVuN383irNsRBEH
------END PRIVATE KEY-----`
+-----END PRIVATE KEY-----`;
 
-it('base64Encrypt', () => {
-  expect(Base64Decrypt('helloworld')).toBe('aGVsbG93b3JsZA==')
-})
+it("base64Encrypt", () => {
+  expect(Base64Decrypt("helloworld")).toBe("aGVsbG93b3JsZA==");
+});
 
 // it('rsaEncrypt', () => {
 //   expect(RSAEncrypt('helloworld', publicKey)).toBe('helloworld')

@@ -1,2 +1,2 @@
-declare module '@imchen/*'
-declare module 'crypto-js'
+declare module "@imchen/*";
+declare module "crypto-js";

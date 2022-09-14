@@ -3,7 +3,7 @@
  * @Author: hankin.dream
  * @Date: 2022-04-08 17:49:30
  */
-import { isUndefined, isNull, isEmpty } from "lodash-es";
+import { isUndefined, isNull, isEmpty, isObject, isString } from "lodash-es";
 import { AESEncrypt, AESDecrypt } from "../encrypt";
 
 export enum CacheTypeEnum {
@@ -132,7 +132,7 @@ class WebStorage {
       return defaultValue;
     }
 
-    if (!isEmpty(storedValue)) {
+    if (isObject(storedValue) && !isEmpty(storedValue)) {
       const { value, expire } = storedValue;
       if (value) {
         if (expire && Number(expire) < Date.now()) {
@@ -143,9 +143,11 @@ class WebStorage {
       }
     }
 
-    return this.encrypted && !isNull(storedValue)
-      ? JSON.parse(this._aesDecrypt(storedValue.value))
-      : storedValue;
+    if (storedValue && isString(storedValue)) {
+      return this.encrypted
+        ? JSON.parse(this._aesDecrypt(storedValue))
+        : storedValue;
+    }
   }
 
   /**

@@ -52,6 +52,11 @@
       "type": "ci",
       "section": "👷 Continuous Integration | CI 配置",
       "hidden": true
+    },
+    {
+      "type": "release",
+      "section": "📦 Release | 发布",
+      "hidden": true
     }
   ]
 }

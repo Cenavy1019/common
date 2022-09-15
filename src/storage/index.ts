@@ -138,13 +138,19 @@ class WebStorage {
         if (expire && Number(expire) < Date.now()) {
           this.remove(key);
         } else {
-          return this.encrypted ? JSON.parse(this._aesDecrypt(value)) : value;
+          return this.encrypted
+            ? this._aesDecrypt(value)
+              ? JSON.parse(this._aesDecrypt(value))
+              : null
+            : value;
         }
       }
     }
 
     return this.encrypted && isString(storedValue)
-      ? JSON.parse(this._aesDecrypt(storedValue))
+      ? this._aesDecrypt(storedValue)
+        ? JSON.parse(this._aesDecrypt(storedValue))
+        : null
       : storedValue;
   }
 

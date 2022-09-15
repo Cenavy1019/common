@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.1](https://github.com/Cenavy1019/common/compare/v0.1.0...v0.1.1) (2022-09-15)
+
+
+### 🐛 Bug Fixes | Bug 修复
+
+* **encrypt:** 修复crypto-aes可能解密失败报错的问题 ([a1f4684](https://github.com/Cenavy1019/common/commit/a1f46849c001e0c48e0b182cf77b50e094dd38c6))
+* **storage:** 修复加密取值未容错的问题 ([ed12e09](https://github.com/Cenavy1019/common/commit/ed12e097b63cca51993b08bfaaebfd2de2119a06))
+
+
+### ✨ Features | 新功能
+
+* **commitlint:** type enum ([e4c58a4](https://github.com/Cenavy1019/common/commit/e4c58a40c1f897f97a99ff087e8fc24b8ac453a1))
+
 ## [0.1.0](https://github.com/Cenavy1019/common/compare/v0.0.7...v0.1.0) (2022-09-14)
 
 

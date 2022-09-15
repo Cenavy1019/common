@@ -103,6 +103,7 @@ export function Base64Decrypt(base64: string) {
  * ```
  */
 export function AESDecrypt(word: string, skey: string, siv: string) {
+  word = (word + "").replace(/\n*$/g, "").replace(/\n/g, "");
   const key = CryptoJS.enc.Utf8.parse(skey);
   const iv = CryptoJS.enc.Utf8.parse(siv);
   const encryptedHexStr = CryptoJS.enc.Hex.parse(word);

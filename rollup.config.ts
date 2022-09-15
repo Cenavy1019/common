@@ -3,7 +3,7 @@ import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
 import json from "@rollup/plugin-json";
 import alias from "@rollup/plugin-alias";
-import esbuild from "rollup-plugin-esbuild";
+// import esbuild from "rollup-plugin-esbuild";
 import typescript from "rollup-plugin-typescript2";
 import { terser } from "rollup-plugin-terser";
 import cleanup from "rollup-plugin-cleanup";
@@ -71,7 +71,8 @@ export default [
     input: "./src/index.ts",
     output: [
       {
-        file: `dist/${libraryName}.d.ts`,
+        // MARK: 更换index默认输出
+        file: `dist/index.d.ts`,
         format: "esm",
       },
     ],
